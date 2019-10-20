@@ -1,0 +1,39 @@
+language: julia
+os:
+  - linux
+julia:
+  - 1.0
+notifications:
+  email: false
+git:
+  depth: 99999999
+cache:
+  timeout: 1000
+  directories:
+    - downloads
+env:
+  global:
+    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+    - BINARYBUILDER_AUTOMATIC_APPLE=false
+sudo: required
+
+# Before anything else, get the latest versions of things
+before_script:
+  - julia -e 'using Pkg; pkg"add BinaryProvider"; pkg"add BinaryBuilder#master"; Pkg.build()'
+
+script:
+  - julia build_tarballs.jl
+
+
+deploy:
+    provider: releases
+    api_key:
+        # Note; this api_key is only valid for cecileane/HybridLambdaBuilder; you need
+        # to make your own: https://docs.travis-ci.com/user/deployment/releases/
+        secure: SsdAku0v3Tq45Ms1QUdCdv/0hUQlUCwQpNCV3TJJT2YvlxlbJjW28U9yzgAl8kB3mFnItaFggjYk5AgMwP+1wNGor7BSPp3vWS3UJYEombeWc2PYKEqA7VuZM9d0pPYiSDPdW8WJsLxyrD2R4dlJRDD+Z+SGNVhsJcJnEghBNa4tIsID+a++koSTVEvRDzC5ukUBtGr/5sz21eI3J1WlDwdI6ra502RgfP5pYbKW0sSdWVBd2StcBHyhkDlZOrK9UVJFLOy/KQD5GUnjQt+97I5VJBE9DAJEwDrI/l90k9QdLJ9uEVovQ3j6zGOktYN9LiTfcfggqCALe3/qQBUj+duwXlVCCH86OBB9Jt9nnDN925TtcUjxvxK0QmJ7gBLh6PUzFLrP/3T1cfljbZlmrrKwL8nyy3rGqTMGXrrfdsuVc+6nTmlsin9N/cMLBKlMxm5/A148Ll3ArKjSc5LIqzSRh/5z0IzTqC1sIU4kLOHGX8nrG18GLztrMblPAAzKHo6sj4KWhVerEJ7MnNnFLzNf/1hN8FMSO8sLiXqoh955OjIXnLHQ32pKXKbs3IgKtUW0avtsnWPCGnkSaF6lU9ctawvO6gVz37SgNT4M4xX9chMRGaPXWl7SIwl4kCSA1XXKndlysxfNkY6bnhSikE08iNEFyO1JA0eJ6fKJTnI=
+    file_glob: true
+    file: products/*
+    skip_cleanup: true
+    on:
+        repo: cecileane/HybridLambdaBuilder
+        tags: true
