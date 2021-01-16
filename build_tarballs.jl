@@ -3,12 +3,12 @@
 using BinaryBuilder
 
 name = "HybridLambda"
-version = v"0.6.2-beta"
+version = v"0.6.3-beta"
 
 # Collection of sources required to build HybridLambda
 sources = [
     "https://github.com/hybridLambda/hybrid-Lambda.git" =>
-    "de99ef39c87e67f78796489ef38e03ed9d363df8",
+    "804160711e36143f89667cab405977b2f0812ce6",
 
 ]
 
