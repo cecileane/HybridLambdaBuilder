@@ -1,6 +1,6 @@
 # HybridLambdaBuilder
 
-[![Build Status](https://travis-ci.org/cecileane/HybridLambdaBuilder.svg?branch=master)](https://travis-ci.org/cecileane/HybridLambdaBuilder)
+[![Build Status](https://travis-ci.com/cecileane/HybridLambdaBuilder.svg?branch=master)](https://travis-ci.com/cecileane/HybridLambdaBuilder)
 
 This repository builds binary artifacts for the HybridLambda project.
 Binary artifacts are automatically uploaded to this repository's
